@@ -9,7 +9,7 @@ from langchain_community.document_loaders import (
         TextLoader,
     )
 from langchain_text_splitters import RecursiveCharacterTextSplitter
-from langchain_huggingface import HuggingFaceEmbeddings
+from langchain_google_genai import GoogleGenerativeAIEmbeddings
 from langchain_community.vectorstores import FAISS
 
 # Model name maps exposed via the API
@@ -23,7 +23,7 @@ GEMINI_MODELS = {
 }
 
 DEFAULT_GROQ_MODEL = "llama-3.3-70b-versatile"
-DEFAULT_GEMINI_MODEL = "gemini-1.5-flash"
+DEFAULT_GEMINI_MODEL = "gemini-2.5-flash"
 
 
 # ──────────────────────────────────────────────────────────────────────────────
@@ -57,12 +57,10 @@ def load_document(filename: str, file_bytes: bytes):
     chunks = splitter.split_documents(docs)
 
     # Free, local embeddings — no extra API key needed
-    embeddings = HuggingFaceEmbeddings(
-        model_name="sentence-transformers/all-MiniLM-L6-v2",
-        model_kwargs={"device": "cpu"},
-        encode_kwargs={"normalize_embeddings": True},
-    )
-
+    embeddings = GoogleGenerativeAIEmbeddings(
+    model="models/text-embedding-004",
+    google_api_key=os.getenv("GOOGLE_API_KEY")
+)
     vectorstore = FAISS.from_documents(chunks, embeddings)
     return vectorstore, len(chunks)
 
