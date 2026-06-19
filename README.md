@@ -13,7 +13,7 @@
 
 **A full-stack RAG (Retrieval-Augmented Generation) chatbot that lets you have a conversation with any PDF — powered by Groq's LPU-accelerated Llama 3.3 70B, local Chroma vector indexing, and a fully custom vanilla JS/CSS frontend.**
 
-[Live Demo]() · [Report Bug](https://github.com/giri-harsh/Yap-Doc/issues) · [Request Feature](../../issues)
+[Live Demo](https://yap-doc.onrender.com) · [Report Bug](https://github.com/giri-harsh/Yap-Doc/issues) · [Request Feature](../../issues)
 
 </div>
 
