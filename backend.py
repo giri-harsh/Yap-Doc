@@ -58,7 +58,7 @@ def load_document(filename: str, file_bytes: bytes):
 
     # Free, local embeddings — no extra API key needed
     embeddings = GoogleGenerativeAIEmbeddings(
-    model="models/text-embedding-004",
+    model="models/text-embedding-001",
     google_api_key=os.getenv("GOOGLE_API_KEY")
 )
     vectorstore = FAISS.from_documents(chunks, embeddings)
