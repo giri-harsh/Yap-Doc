@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Yap·Doc — your doc, finally has something to say</title>
+<link rel="icon" href="data:,">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app">
+    <header class="nav">
+      <button class="brand-home" id="homeBtn" type="button" aria-label="Back to start, new conversation">
+        <span class="brand-arrow" aria-hidden="true">←</span>
+        <span class="wave wave-idle" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+        Yap<span class="dot">·</span>Doc
+      </button>
+
+      <div class="controls">
+        <div class="segmented" id="modelPicker" role="tablist" aria-label="Model">
+          <button class="seg-btn active" data-model="Groq" type="button">Groq</button>
+          <button class="seg-btn" data-model="Google Gemini" type="button">Gemini</button>
+        </div>
+
+        <label class="switch">
+          <input type="checkbox" id="deepToggle">
+          <span class="switch-track"><span class="switch-thumb"></span></span>
+          <span class="switch-label">Deep dive</span>
+        </label>
+      </div>
+    </header>
+
+    <div class="toast" id="deepToast" hidden>
+      <span>Deep dive enabled — Yap-Doc also pulls in Wikipedia for extra context.</span>
+      <button class="toast-close" id="toastClose" type="button" aria-label="Dismiss">×</button>
+    </div>
+
+    <main class="stage" id="stage">
+      <section class="hero" id="hero">
+        <h1 class="hero-title">YAP-DOC</h1>
+        <p class="hero-byline">Your Doc yaps back</p>
+
+        <div class="dropzone" id="dropzone" tabindex="0">
+          <input type="file" id="fileInput" accept=".pdf,.docx,.txt" hidden>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M7 8l5-5 5 5"/><path d="M5 21h14"/></svg>
+          <div class="dz-text">
+            <strong>Drop a PDF, DOCX, or TXT</strong>
+            <span>or click to browse</span>
+          </div>
+        </div>
+
+        <div class="file-chip" id="fileChip" hidden>
+          <span class="fc-name" id="fcName"></span>
+          <span class="fc-meta" id="fcMeta"></span>
+          <button class="fc-remove" id="fcRemove" type="button" aria-label="Remove document">×</button>
+        </div>
+      </section>
+
+      <section class="chat" id="chat" aria-live="polite"></section>
+    </main>
+
+    <footer class="composer">
+      <textarea id="promptInput" rows="1" placeholder="Ask anything…"></textarea>
+      <button class="composer-send" id="sendBtn" type="button" aria-label="Send message">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+      </button>
+    </footer>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.2/marked.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
